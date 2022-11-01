@@ -1,10 +1,15 @@
 <template>
 <lightning-card>   
+
+    <lightning-layout>
+
+    <lightning-layout-item size="2" padding="around-small">    
     <lightning-card class="slds-p-around_medium">    
-    <div class="slds-grid">
+    <div class="slds-grid slds-grid_vertical">
 
 
-    <div class="slds-col">
+    <!--<div class="slds-col">-->
+       <div  class="slds-col slds-align-top"> 
         <lightning-input 
                             class="slds-p-around_x-small"
                             value={prodName}
@@ -18,7 +23,7 @@
 
 
 
-     <div class="slds-col">
+     <div class="slds-col slds-align-top">
          <lightning-combobox 
                              class="slds-p-around_x-small"
                              value={className}
@@ -30,7 +35,7 @@
              > </lightning-combobox>
             </div>
 
-            <div class="slds-col">
+            <div class="slds-col slds-align-top">
              <lightning-combobox 
                              class="slds-p-around_x-small"
                              value={family}
@@ -42,7 +47,7 @@
              > </lightning-combobox>
              </div>
 
-             <div class="slds-col">
+             <div class="slds-col slds-align-top">
              <lightning-combobox 
                              class="slds-p-around_x-small"
                              value={type}
@@ -54,7 +59,7 @@
              > </lightning-combobox>
                </div>
 
-               <div class="slds-col">
+               <div class="slds-col slds-align-top">
              <lightning-combobox 
                              class="slds-p-around_x-small"
                              value={quantity}
@@ -76,17 +81,81 @@
          </div>-->
          </div>
     </lightning-card>
+</lightning-layout-item>
 
 
+<lightning-layout-item size="10" padding="around-small">
     <lightning-card>
      <lightning-datatable
      key-field="id"
      data={pdata}
      columns={columns}
-     column-width-mode="fixed">
-
+     column-width-mode="fixed"
+     onrowaction={handleRowAction}>
      </lightning-datatable>
-    </lightning-card>
+    <!-- onmouseover={handleRowAction} -->
+    
 
+
+
+     <template if:true={modalContainer}>
+        <section  class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModalAction}>
+                       <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small" ></lightning-icon>
+                    </button>
+                    <h2 class="slds-text-heading_medium slds-hyphenate">Product Record Detail</h2>
+                 </header>
+
+                 <div class="slds-modal__content slds-p-around_medium">
+                    
+
+                  <!--  <img src={contactRow.Image__c} alt={contactRow.Image__c} class="image"/>
+                    <img src={contactRow.Image__c} width="100" height="100"/>-->
+                    <lightning-formatted-rich-text value={contactRow.Image__c} ></lightning-formatted-rich-text>
+                    
+                     <table class="slds-table slds-table_bordered slds-table_col-bordered slds-table_cell-buffer">
+                       <thead> 
+                         <tr>
+                          <!--  <th>Name</th>-->
+                            <th>Product Class</th>
+                            <th>Product Code</th>
+                            <th>Family</th>
+                            <th>Type</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <tr>
+                           <!-- <td>{contactRow.Name}</td>-->
+                            <td>{contactRow.ProductClass}</td>
+                            <td>{contactRow.ProductCode}</td>
+                            <td>{contactRow.Family}</td>
+                            <td>{contactRow.Type}</td>
+                            <td>{contactRow.QuantityUnitOfMeasure}</td>
+                        </tr>
+                    </tbody>   
+                    </table>
+                 </div>
+                 <footer class="slds-modal__footer">
+                    <lightning-button variant="brand" label="Close" title="Close"  onclick={closeModalAction}></lightning-button>
+               </footer> 
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+  
+
+
+
+
+
+    </lightning-card>
+</lightning-layout-item>
+
+
+</lightning-layout>
 </lightning-card>
 </template>
