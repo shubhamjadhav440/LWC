@@ -10,6 +10,17 @@ import Prodlist from '@salesforce/apex/ProductList.productL';
 import ProductAll from '@salesforce/apex/ProductList.productAll';
 
 const columns = [
+    {
+        label: 'View',
+        type: 'button-icon',
+        initialWidth: 75,
+        typeAttributes: {
+            iconName: 'action:preview',
+            title: 'Preview',
+            variant: 'border-filled',
+            alternativeText: 'View'
+        }
+      },
     {label : 'Name', fieldName : 'Name'},
     {label : 'Product Class', fieldName : 'ProductClass'},
     {label : 'Product Code', fieldName : 'ProductCode'},
@@ -34,7 +45,26 @@ export default class ListViewCombined extends LightningElement {
     @track columns = columns;
     @track error;
     searchable = [];
+
+    @track contactRow={};
+    @track rowOffset = 0;  
+    @track modalContainer = false;
     
+
+    handleRowAction(event){
+        this.modalContainer=true;
+        const dataRow = event.detail.row;
+        window.console.log('dataRow@@ ' + dataRow);
+        this.contactRow=dataRow;
+        window.console.log('contactRow## ' + this.contactRow);
+        console.log('contactRow## ' + this.contactRow);
+        console.log(this.contactRow.Image__c);
+     }
+   
+     closeModalAction(){
+      this.modalContainer=false;
+     }
+
 
 
 
