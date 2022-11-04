@@ -1,0 +1,307 @@
+global class ProductList {
+
+    @AuraEnabled(cacheable = true)
+    global static List<Product2> productL(){
+        List<Product2> pList = new List<Product2>();
+         pList = [Select Id,Name,ProductClass,ProductCode,Family,Type,QuantityUnitOfMeasure,Image__c From Product2]; 
+        system.debug(pList);
+        return pList;
+    }
+    
+    
+    @AuraEnabled(cacheable = true)
+    global static List<Product2> productC(String pclass){
+        system.debug(pclass);
+        List<Product2> pList = [Select Id,Name,ProductClass,ProductCode,Family,Type,QuantityUnitOfMeasure,Image__c From Product2
+                  WHERE 
+                  ProductClass =: pclass
+               ]; 
+        system.debug(pList);
+        return pList;
+    }
+    
+     @AuraEnabled(cacheable = true)
+    global static List<Product2> productF(String family){
+        system.debug(family);
+        List<Product2> pList = [Select Id,Name,ProductClass,ProductCode,Family,Type,QuantityUnitOfMeasure,Image__c From Product2
+                 WHERE Family =: family
+               ]; 
+        system.debug(pList);
+        return pList;
+    }
+    
+     @AuraEnabled(cacheable = true)
+    global static List<Product2> productT(String type){
+        system.debug(type);
+        List<Product2> pList = [Select Id,Name,ProductClass,ProductCode,Family,Type,QuantityUnitOfMeasure,Image__c From Product2
+                  WHERE Type =: type 
+                 ]; 
+        system.debug(pList);
+        return pList;
+    }
+    
+    
+     @AuraEnabled(cacheable = true)
+    global static List<Product2> productQ(String quantity){
+        system.debug(quantity);
+        List<Product2> pList = [Select Id,Name,ProductClass,ProductCode,Family,Type,QuantityUnitOfMeasure,Image__c From Product2
+                  WHERE QuantityUnitOfMeasure =: quantity
+                 ]; 
+        system.debug(pList);
+        return pList;
+    }
+    
+    
+    
+     @AuraEnabled(cacheable = true)
+    global static List<Product2> productAll(String className,String family,String type,String quantity,String pName){
+        system.debug(family);
+        system.debug(type);
+        system.debug(pName);
+        system.debug(className);
+        system.debug(quantity);
+        String query;
+        String condition;
+        
+        /*
+        String condition = (String.isNotBlank(family)?
+                 'Family LIKE \'' + '%\'' 
+                           :'');
+        
+        condition += (String.isNotBlank(type)
+            ? (String.isNotBlank(type) ? +' AND ' : '') +
+              ' Type LIKE \'' +
+              '%' +
+              type +
+              '%\''
+            : '');
+        
+        condition += (String.isNotBlank(className)
+            ? (String.isNotBlank(className) ? +' AND ' : '') +
+              ' ProductClass LIKE \'' +
+              '%' +
+              className +
+              '%\''
+            : '');
+        
+        
+        condition += (String.isNotBlank(quantity)
+            ? (String.isNotBlank(quantity) ? +' AND ' : '') +
+              ' QuantityUnitOfMeasure LIKE \'' +
+              '%' +
+              quantity +
+              '%\''
+            : '');
+        */
+        
+        
+        if(family != null){
+            system.debug('99');
+        condition = ' Family LIKE \'' +
+              '%' +
+              family +
+              '%\'';
+            
+        
+        if(type != null){
+         condition += 'AND Type LIKE \'' +
+              '%' +
+              type +
+              '%\'';   
+        }
+        
+        if(quantity != null){
+         condition += 'AND QuantityUnitOfMeasure LIKE \'' +
+              '%' +
+              quantity +
+              '%\'';   
+        }
+        
+        if(className != null){
+            condition += 'AND ProductClass LIKE \'' +
+              '%' +
+              className +
+              '%\''; 
+        }
+            
+            if(pName != '' || pName != null){
+                    condition += 'AND Name LIKE \'' +
+              '%' +
+              pName +
+              '%\'';
+            }
+        }
+        
+        
+        else if(type != null){
+            system.debug('137');
+        condition = ' Type LIKE \'' +
+              '%' +
+              type +
+              '%\'';
+            
+        
+        if(family != null){
+         condition += 'AND Family LIKE \'' +
+              '%' +
+              family +
+              '%\'';   
+        }
+        
+        if(quantity != null){
+         condition += 'AND QuantityUnitOfMeasure LIKE \'' +
+              '%' +
+              quantity +
+              '%\'';   
+        }
+        
+        if(className != null){
+            condition += 'AND ProductClass LIKE \'' +
+              '%' +
+              className +
+              '%\''; 
+        }
+            
+            if(pName != '' || pName != null){
+                    condition += 'AND Name LIKE \'' +
+              '%' +
+              pName +
+              '%\'';
+            }
+        }
+        
+        
+        
+        else if(className != null){
+            system.debug('176');
+        condition = ' ProductClass LIKE \'' +
+              '%' +
+              className +
+              '%\'';
+            
+        
+        if(family != null){
+         condition += 'AND Family LIKE \'' +
+              '%' +
+              family +
+              '%\'';   
+        }
+        
+        if(quantity != null){
+         condition += 'AND QuantityUnitOfMeasure LIKE \'' +
+              '%' +
+              quantity +
+              '%\'';   
+        }
+        
+        if(type != null){
+            condition += 'AND Type LIKE \'' +
+              '%' +
+              type +
+              '%\''; 
+        }
+            
+            if(pName != '' || pName != null){
+                    condition += 'AND Name LIKE \'' +
+              '%' +
+              pName +
+              '%\'';
+            }
+        }
+        
+     
+        
+        
+        
+        else if(pName != '' || pName != null){
+            system.debug('217');
+            condition = ' Name LIKE \'' +
+              '%' +
+              pName +
+              '%\'';
+            
+        if(className != null){
+        condition = 'AND ProductClass LIKE \'' +
+              '%' +
+              className +
+              '%\'';
+        }
+        
+        if(family != null){
+         condition += 'AND Family LIKE \'' +
+              '%' +
+              family +
+              '%\'';   
+        }
+        
+        if(quantity != null){
+         condition += 'AND QuantityUnitOfMeasure LIKE \'' +
+              '%' +
+              quantity +
+              '%\'';   
+        }
+        
+        if(type != null){
+            condition += 'AND Type LIKE \'' +
+              '%' +
+              type +
+              '%\''; 
+        }    
+   }
+
+
+        
+        else if(quantity != null){
+            system.debug('255');
+        condition = ' QuantityUnitOfMeasure LIKE \'' +
+              '%' +
+              quantity +
+              '%\'';
+            
+        
+        if(family != null){
+         condition += 'AND Family LIKE \'' +
+              '%' +
+              family +
+              '%\'';   
+        }
+        
+        if(className != null){
+         condition += 'AND ProductClass LIKE \'' +
+              '%' +
+              className +
+              '%\'';   
+        }
+        
+        if(type != null){
+            condition += 'AND Type LIKE \'' +
+              '%' +
+              type +
+              '%\''; 
+        }
+            if(pName != '' || pName != null){
+                    condition += 'AND Name LIKE \'' +
+              '%' +
+              pName +
+              '%\'';
+            }
+        }
+        
+        
+        
+        
+        
+        
+        system.debug('Condition is '+condition);
+        if(String.isNotBlank(condition)){
+            query  = 'Select Id,Name,ProductClass,ProductCode,Family,Type,QuantityUnitOfMeasure,Image__c From Product2 WHERE '+
+                      condition +
+                      'ORDER BY ProductCode';
+        }else{
+            query = 'Select Id,Name,ProductClass,ProductCode,Family,Type,QuantityUnitOfMeasure,Image__c From Product2 ORDER BY ProductCode LIMIT 150';
+        }
+        List<Product2> productList = Database.query(query);
+        system.debug(productList);
+        return productList;        
+    }
+}
