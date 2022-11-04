@@ -1,0 +1,123 @@
+public class oppSearchTable {
+    
+    public static List<oppWrapper> TwrapList {get; set;} 
+    public static List<oppWrapper> newWList {get; set;}
+    /*
+    public oppSearchTable(){
+        TwrapList = new List<oppWrapper>();
+        List<Opportunity> opps = [Select id,Name, Amount, StageName,NextStep, Description, CloseDate, Account.Name from Opportunity];
+        for(Opportunity o : opps){
+        oppWrapper op = new oppWrapper();
+             op.oName = o.Name;
+            op.oNextStep = o.NextStep;
+            op.oStageName = o.StageName;
+            op.oDescription  = o.Description;
+            string dt = o.CloseDate.format();
+            op.oCloseDate = dt;
+            op.oAccName = o.Account.Name;
+            String amt = String.valueOf(o.Amount);
+            op.oAmount = amt;
+            TwrapList.add(op);
+        }
+        system.debug(TwrapList);
+    }
+    */
+    
+    @AuraEnabled(cacheable=true)
+    public static List<oppWrapper> searchWord(String keyword){
+        system.debug(keyword);
+        
+        newWList = new List<oppWrapper>();
+        string searchKeyword = '%' + keyword + '%';   
+        TwrapList = new List<oppWrapper>();
+        List<Opportunity> opps = new List<Opportunity>();
+        String query = 'Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity' ;
+        opps = Database.query(query);
+        system.debug(opps);
+        
+        for(Opportunity o : opps){
+            oppWrapper op = new oppWrapper();
+             op.oName = o.Name;
+            op.oNextStep = o.NextStep;
+            op.oStageName = o.StageName;
+            op.oDescription  = o.Description;
+            string dt = o.CloseDate.format();
+            op.oCloseDate = dt;
+            op.oAccName = o.Account.Name;
+            String amt = String.valueOf(o.Amount);
+            op.oAmount = amt;
+            TwrapList.add(op);
+        } 
+         system.debug(TwrapList);
+      
+        
+                system.debug(newWList);
+
+        for(Oppwrapper ol : TwrapList){
+            system.debug(ol);
+            if((ol.oAccName != null && ol.oAccName.containsIgnoreCase(keyword)) ||(ol.oDescription != null && ol.oDescription.containsIgnoreCase(keyword)) || (ol.oCloseDate != null && ol.oCloseDate.containsIgnoreCase(keyword)) || (ol.oAmount != null && ol.oAmount.containsIgnoreCase(keyword))){
+             oppWrapper ops = new oppWrapper();
+             ops.oName = ol.oName;
+             ops.oNextStep = ol.oNextStep;
+             ops.oStageName = ol.oStageName;
+             ops.oDescription  = ol.oDescription;
+             ops.oCloseDate = ol.oCloseDate;
+             ops.oAccName = ol.oAccName;
+             ops.oAmount = ol.oAmount;
+             newWList.add(ops);
+            }
+        }
+  
+    //    system.debug(TwrapList);
+        system.debug(newWList);
+        return newWList;
+    
+    }
+    
+    
+    @AuraEnabled(cacheable=true)
+    public static List<oppWrapper> showD(){
+        List<Opportunity> opps = new List<Opportunity>();
+        List<oppWrapper> wrapList = new List<oppWrapper>();
+        String query = 'Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity' ;
+        opps = Database.query(query);
+        system.debug(opps);
+        for(Opportunity om : opps){
+        oppWrapper op = new oppWrapper();
+            op.oName = om.Name;
+            op.oNextStep = om.NextStep;
+            op.oStageName = om.StageName;
+            op.oDescription  = om.Description;
+            string dt = om.CloseDate.format();
+            op.oCloseDate = dt;
+            op.oAccName = om.Account.Name;
+            String amt = String.valueOf(om.Amount);
+            op.oAmount = amt;
+            wrapList.add(op);
+        }    
+        system.debug(wrapList);
+        return wrapList;
+    }
+    
+    
+    public class oppWrapper{
+       @AuraEnabled public string oName {get;set;}
+       @AuraEnabled public string oNextStep {get;set;}
+       @AuraEnabled public string oStageName {get;set;}
+       @AuraEnabled public string oDescription {get;set;}
+       @AuraEnabled public String oCloseDate {get;set;}
+       @AuraEnabled public string oAccName {get;set;}
+       @AuraEnabled public string oAmount {get;set; }
+        /*
+        public oppWrapper(){
+            this.oName = oName;
+            this.oNextStep = oNextStep;
+            this.oStageName = oStageName;
+            this.oDescription = oDescription;
+            this.oCloseDate = oCloseDate;
+            this.oAccName = oAccName;
+            this.oAmount = oAmount;
+        }*/
+    }
+    
+}

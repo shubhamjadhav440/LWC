@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title = "Opportunity Search Module">
+    
+    <div class="slds-p-around_medium lgc-bg">
+        <lightning-input
+                type="search"
+                variant="label-hidden" 
+                value={searchK} onkeyup={handleChange}>
+        </lightning-input>
+
+        <lightning-button variant="brand" label="Export Data" title="Export Data" onclick={csvGenerator}></lightning-button>
+    </div>
+    
+
+    <lightning-datatable
+    key-field="id"
+    data={odata}
+    columns={columns}
+    column-width-mode="fixed"></lightning-datatable>
+<!--
+<table>
+    <th>Name</th>
+    <th>Amount</th>
+    <th>Stage</th>
+    <th>Description</th>
+    <th>Close Date</th>
+    <th>Amount</th>
+    <th>Account</th>
+    <tr></tr>
+</table>
+    -->
+</lightning-card>
+</template>
