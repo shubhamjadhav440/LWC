@@ -1,0 +1,15 @@
+public class AccList {
+    @AuraEnabled(cacheable = true)
+    public static List<Account> getList(){
+        List<Account> aList = [Select Id,Name from Account];
+        system.debug(aList);
+        return aList;
+            }
+    
+    
+    @AuraEnabled(cacheable=true)
+    public static List<Account> getSet(List<Id> iList){
+        List<Account> newAList = [Select Id,Name from Account WHERE Id IN: iList];
+        return newAList;
+    }
+}

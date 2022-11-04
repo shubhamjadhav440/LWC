@@ -1,0 +1,54 @@
+<template>
+
+<lightning-card>
+    
+    <template if:true={table1}>
+    <div class = "slds-text-align_center">
+    <lightning-button variant="brand" label="Next" title="Next" onclick={handleClick}
+    class = "slds-text-align_center" slot="actions"></lightning-button>
+    </div>
+<br/>
+
+    <lightning-datatable
+    key-field="id"
+    data={aList}
+    columns={columns}
+     column-width-mode="fixed">
+    </lightning-datatable>
+<br/>
+
+
+    <div class = "slds-text-align_center">
+        <lightning-button variant="brand" label="Next" title="Next" onclick={handleClick}
+        class = "slds-text-align_center" slot="actions"></lightning-button>
+        </div>
+    <br/>
+</template>
+
+
+
+
+<template if:true={table2}>
+    <div class = "slds-text-align_center">
+        <lightning-button variant="brand" label="Next" title="Finish" onclick={finishClick}
+        class = "slds-text-align_center" slot="actions"></lightning-button>
+        </div>
+    <br/>
+    
+        <lightning-datatable
+        key-field="id"
+        data={currentRecord}
+        columns={columns}
+         column-width-mode="fixed">
+        </lightning-datatable>
+    <br/>
+    
+        <div class = "slds-text-align_center">
+            <lightning-button variant="brand" label="Next" title="Finish" onclick={handleClick1}
+            class = "slds-text-align_center" slot="actions"></lightning-button>
+            </div>
+        <br/>
+</template>
+
+</lightning-card>
+</template>
