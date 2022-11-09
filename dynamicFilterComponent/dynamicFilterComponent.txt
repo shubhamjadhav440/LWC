@@ -1,0 +1,292 @@
+public class dynamicFilterComponent {
+    
+    
+    public static List<oppWrapper> TwrapList {get; set;} 
+    public static List<oppWrapper> newWList {get; set;}
+    
+    
+    
+    @AuraEnabled(cacheable=true)
+    public static List<oppWrapper> showD(){
+        List<Opportunity> opps = new List<Opportunity>();
+        List<oppWrapper> wrapList = new List<oppWrapper>();
+        String query = 'Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity' ;
+        opps = Database.query(query);
+        system.debug(opps);
+        for(Opportunity om : opps){
+            oppWrapper op = new oppWrapper();
+            op.oName = om.Name;
+            op.oNextStep = om.NextStep;
+            op.oStageName = om.StageName;
+            op.oDescription  = om.Description;
+            string dt = om.CloseDate.format();
+            op.oCloseDate = dt;
+            op.oAccName = om.Account.Name;
+            String amt = String.valueOf(om.Amount);
+            op.oAmount = amt;
+            wrapList.add(op);
+        }    
+        system.debug(wrapList);
+        return wrapList;
+    }
+    
+    
+    
+    @AuraEnabled(cacheable=true)
+    public static List<oppWrapper> showD2(string keyword, string operator){
+        system.debug(keyword);
+        system.debug(operator);
+        List<Opportunity> opps2 = new List<Opportunity>();
+        TwrapList = new List<oppWrapper>();
+        String query ;
+        if(operator == 'equals'){
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE Account.Name =: keyword];
+            system.debug(opps2);
+        }
+        if(operator == 'not equal to'){
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE Account.Name !=: keyword] ;
+            system.debug(opps2);
+        }
+        if(operator == 'contains'){
+            string searchKeyword = '%' + keyword + '%';
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE Account.Name LIKE : searchKeyword] ;
+            system.debug(opps2);
+        }
+        if(operator == 'does not contain'){
+            string searchKeyword = '%' + keyword + '%';
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE NOT(Account.Name LIKE : searchKeyword)] ;
+            system.debug(opps2);
+        }
+        if(operator == 'starts with'){
+            string searchKeyword = keyword + '%';
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE NOT(Account.Name LIKE : searchKeyword)] ;
+            system.debug(opps2);
+        }
+        system.debug(opps2);
+        
+        for(Opportunity o : opps2){
+            oppWrapper op = new oppWrapper();
+            op.oName = o.Name;
+            op.oNextStep = o.NextStep;
+            op.oStageName = o.StageName;
+            op.oDescription  = o.Description;
+            string dt = o.CloseDate.format();
+            op.oCloseDate = dt;
+            op.oAccName = o.Account.Name;
+            String amt = String.valueOf(o.Amount);
+            op.oAmount = amt;
+            TwrapList.add(op);
+        } 
+        system.debug(TwrapList);
+        return TwrapList;
+    }
+    
+    
+    
+    
+    
+    @AuraEnabled(cacheable=true)
+    public static List<oppWrapper> showD3(Date keyword, string operator){
+        system.debug(keyword);
+        system.debug(operator);
+        List<Opportunity> opps2 = new List<Opportunity>();
+        TwrapList = new List<oppWrapper>();
+        String query ;
+        if(operator == 'equals'){
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE CloseDate =: keyword];
+            system.debug(opps2);
+        }
+        if(operator == 'not equal to'){
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE CloseDate != : keyword] ;
+            system.debug(opps2);
+        }
+        if(operator == 'less than'){
+            // string searchKeyword = '%' + keyword + '%';
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE CloseDate < : keyword] ;
+            system.debug(opps2);
+        }
+        if(operator == 'greater than'){
+            //  string searchKeyword = '%' + keyword + '%';
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE CloseDate > : keyword] ;
+            system.debug(opps2);
+        }
+        if(operator == 'less or equal'){
+            //    string searchKeyword = keyword + '%';
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE CloseDate <= : keyword] ;
+            system.debug(opps2);
+        }
+        if(operator == 'greater or equal'){
+            //    string searchKeyword = keyword + '%';
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE CloseDate >= : keyword] ;
+            system.debug(opps2);
+        }
+        system.debug(opps2);
+        
+        for(Opportunity o : opps2){
+            oppWrapper op = new oppWrapper();
+            op.oName = o.Name;
+            op.oNextStep = o.NextStep;
+            op.oStageName = o.StageName;
+            op.oDescription  = o.Description;
+            string dt = o.CloseDate.format();
+            op.oCloseDate = dt;
+            op.oAccName = o.Account.Name;
+            String amt = String.valueOf(o.Amount);
+            op.oAmount = amt;
+            TwrapList.add(op);
+        } 
+        system.debug(TwrapList);
+        return TwrapList;
+    }
+    
+    
+    
+    @AuraEnabled(cacheable=true)
+    public static List<oppWrapper> showD4(Decimal keyword, string operator){
+        system.debug(keyword);
+        system.debug(operator);
+        List<Opportunity> opps2 = new List<Opportunity>();
+        TwrapList = new List<oppWrapper>();
+        String query ;
+        if(operator == 'equals'){
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE Amount =: keyword];
+            system.debug(opps2);
+        }
+        if(operator == 'not equal to'){
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE Amount != : keyword] ;
+            system.debug(opps2);
+        }
+        if(operator == 'less than'){
+            // string searchKeyword = '%' + keyword + '%';
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE Amount < : keyword] ;
+            system.debug(opps2);
+        }
+        if(operator == 'greater than'){
+            //  string searchKeyword = '%' + keyword + '%';
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE Amount > : keyword] ;
+            system.debug(opps2);
+        }
+        if(operator == 'less or equal'){
+            //    string searchKeyword = keyword + '%';
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE Amount <= : keyword] ;
+            system.debug(opps2);
+        }
+        if(operator == 'greater or equal'){
+            //    string searchKeyword = keyword + '%';
+            opps2 = [Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity WHERE Amount >= : keyword] ;
+            system.debug(opps2);
+        }
+        system.debug(opps2);
+        
+        for(Opportunity o : opps2){
+            oppWrapper op = new oppWrapper();
+            op.oName = o.Name;
+            op.oNextStep = o.NextStep;
+            op.oStageName = o.StageName;
+            op.oDescription  = o.Description;
+            string dt = o.CloseDate.format();
+            op.oCloseDate = dt;
+            op.oAccName = o.Account.Name;
+            String amt = String.valueOf(o.Amount);
+            op.oAmount = amt;
+            TwrapList.add(op);
+        } 
+        system.debug(TwrapList);
+        return TwrapList;
+    }
+    
+    
+    @AuraEnabled(cacheable=true)
+    public static List<oppWrapper> showD5(string Description){
+        string searchKeyword = Description;
+        system.debug(searchKeyword);
+        List<Opportunity> opps = new List<Opportunity>();
+        TwrapList = new List<oppWrapper>();
+        List<oppWrapper> wrapList = new List<oppWrapper>();
+        String query = 'Select id,Name, Amount,NextStep, StageName, Description, CloseDate, Account.Name  from Opportunity' ;
+        opps = Database.query(query);
+        system.debug(opps);
+        for(Opportunity om : opps){
+            oppWrapper op = new oppWrapper();
+            op.oName = om.Name;
+            op.oNextStep = om.NextStep;
+            op.oStageName = om.StageName;
+            op.oDescription  = om.Description;
+            string dt = om.CloseDate.format();
+            op.oCloseDate = dt;
+            op.oAccName = om.Account.Name;
+            String amt = String.valueOf(om.Amount);
+            op.oAmount = amt;
+            wrapList.add(op);
+        }    
+        system.debug(wrapList);
+        
+        for(Oppwrapper ol : wrapList){
+            if((ol.oDescription != null && ol.oDescription.containsIgnoreCase(searchKeyword))){
+                oppWrapper ops = new oppWrapper();
+                ops.oName = ol.oName;
+                ops.oNextStep = ol.oNextStep;
+                ops.oStageName = ol.oStageName;
+                ops.oDescription  = ol.oDescription;
+                ops.oCloseDate = ol.oCloseDate;
+                ops.oAccName = ol.oAccName;
+                ops.oAmount = ol.oAmount;
+                TwrapList.add(ops);
+            }        
+        }
+        return TwrapList;
+    }
+    
+    
+    
+    @AuraEnabled(cacheable=true)
+    public static void generateCSV(List<String> colArray,List<Map<String, String>> apexList){
+        system.debug(colArray);
+        system.debug(apexList);
+        List<String> rowValues = new List<String>();
+        String  csvColumnHeader;
+        String[] tmp1 = New String[]{};
+            
+        csvColumnHeader = string.join(colArray,',');    
+        for(Map<String,String> objs : apexList){
+             tmp1.clear();
+            for(string s : colArray){
+                String s1 = objs.get(s);
+                tmp1.add(s1);
+            }
+            system.debug(tmp1);
+            String rowStr = string.join(tmp1,',');
+            rowValues.add(rowStr);
+        }
+        system.debug(rowValues);
+        String documentName = 'Opportunity Logs-'+ Datetime.now().format('MMM') + Datetime.now().year();
+        String csvFile = csvColumnHeader + String.join(RowValues,'\n');
+
+// Insert the generated CSV file in Document object under "Setup Audit Trail Logs".FolderId = folders[0].Id,
+       Document doc = new Document(Name = documentName, Body = Blob.valueOf(csvFile),  Type = 'csv', ContentType='application/vnd.ms-excel');
+       insert doc;
+       system.debug(doc.id);
+        
+    }
+    
+    
+    public class oppWrapper{
+        @AuraEnabled public string oName {get;set;}
+        @AuraEnabled public string oNextStep {get;set;}
+        @AuraEnabled public string oStageName {get;set;}
+        @AuraEnabled public string oDescription {get;set;}
+        @AuraEnabled public String oCloseDate {get;set;}
+        @AuraEnabled public string oAccName {get;set;}
+        @AuraEnabled public string oAmount {get;set; }
+        /*
+public oppWrapper(){
+this.oName = oName;
+this.oNextStep = oNextStep;
+this.oStageName = oStageName;
+this.oDescription = oDescription;
+this.oCloseDate = oCloseDate;
+this.oAccName = oAccName;
+this.oAmount = oAmount;
+}*/
+    }
+}

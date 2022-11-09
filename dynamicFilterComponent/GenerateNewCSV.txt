@@ -1,0 +1,71 @@
+public class GenerateNewCSV {
+
+    
+    
+     public static String getUserIPAddress() {
+    Map<String, String> session = Auth.SessionManagement.getCurrentSession();
+    return session.get('SourceIp');
+}
+    
+    
+      @AuraEnabled
+    public static void generateCSV(List<String> colArray,List<Map<String, String>> apexList, String searchString){
+        system.debug(colArray);
+        system.debug(apexList);
+        system.debug(searchString);
+        String IP = getUserIPAddress();
+        system.debug(IP);
+        List<String> rowValues = new List<String>();
+        String  csvColumnHeader;
+        String[] tmp1 = New String[]{};
+            
+        csvColumnHeader = string.join(colArray,',');    
+        for(Map<String,String> objs : apexList){
+             tmp1.clear();
+            for(string s : colArray){
+                String s1 = objs.get(s);
+                tmp1.add(s1);
+            }
+            system.debug(tmp1);
+            String rowStr = string.join(tmp1,',');
+            rowValues.add(rowStr);
+        }
+        system.debug(rowValues);
+        String documentName = 'Opportunity Logs-'+ Datetime.now().format('MMM') + Datetime.now().year();
+        String csvFile = csvColumnHeader + String.join(RowValues,'\n');
+      //  List<Folder> folders = [SELECT Id, Name FROM Folder WHERE Name = 'Asset Library'];
+// Insert the generated CSV file in Document object under "Setup Audit Trail Logs".FolderId = folders[0].Id,
+      // Document doc = new Document(Name = documentName, Body = Blob.valueOf(csvFile), FolderId = folders[0].Id, Type = 'csv', ContentType='application/vnd.ms-excel');
+     //  insert doc;
+      // system.debug(doc.id);
+      
+        
+        
+     CSV_Downloaded__c c = new CSV_Downloaded__c();
+     c.IP_Address__c = IP;
+     c.Search_Term__c = searchString;
+     c.Downloaded_By__c = userInfo.getUserId();
+     c.Columns_Selected__c = csvColumnHeader;
+    insert c;    
+    contentVersion cVersion = new contentVersion();
+    cVersion.Title = documentName;
+    system.debug('title'+documentName);
+    cVersion.PathOnClient = documentName +'.'+'csv'; 
+    system.debug('PathOnClient'+cVersion.PathOnClient);
+    cVersion.versionData =Blob.valueOf(csvFile);
+    system.debug('Version data'+cVersion.versionData);
+    insert cVersion; 
+        
+         ID conDocument = [Select ContentDocumentID from ContentVersion 
+    where ID=:cVersion.ID].ContentDocumentID;
+        
+        
+         ContentDocumentLink conDocLink = new ContentDocumentLink();
+    conDocLink.LinkedEntityId = c.Id;
+    conDocLink.ContentDocumentId = conDocument;
+    conDocLink.shareType = 'V';
+    conDocLink.Visibility = 'AllUsers';
+    insert conDocLink; 
+        
+    }
+}

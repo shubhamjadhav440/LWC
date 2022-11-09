@@ -1,0 +1,142 @@
+<template>
+    <lightning-card>
+
+        <div class="slds-m-around_medium">
+            <h3 class="slds-text-heading_large ; slds-text-align_center">
+                <strong style="color:#270086; font-size:35px; margin-right:100px;"> Dynamic Opportunity Filter</strong>
+               </h3>
+           <br/><br/>
+
+
+           <lightning-layout>
+            <lightning-layout-item size="3" padding="around-small">    
+            <lightning-card class="slds-p-around_medium">    
+            <div class="slds-grid slds-grid_vertical">
+                <lightning-input type="text" label="Search by Account Name" value={accName} onchange={handleChange}></lightning-input>
+                <lightning-input type="date" label="Search by Close Date" value={accDate} onchange={handleChange2}></lightning-input>
+                <lightning-input type="number" label="Search by Amount" value={accAccount} onchange={handleChange3}></lightning-input>
+            </div>
+            </lightning-card>
+            </lightning-layout-item>
+
+
+         
+           <lightning-layout-item size="3" padding="around-small">
+           <lightning-card class="slds-p-around_medium">
+            <div class="slds-grid slds-grid_vertical">
+                <lightning-combobox
+                name="progress"
+                label="Account Name Operator"
+                value={filter}
+                placeholder="Select a filter"
+                options={options}
+                onchange={filterChange}></lightning-combobox>
+                
+                <lightning-combobox
+                name="progress"
+                label="Account Date Operator"
+                value={filter2}
+                placeholder="Select a filter"
+                options={options2}
+                onchange={filterChange2}></lightning-combobox>
+
+                <lightning-combobox
+                name="progress"
+                label="Account Amount Operator"
+                value={filter3}
+                placeholder="Select a filter"
+                options={options3}
+                onchange={filterChange3}></lightning-combobox>
+
+                 <br/>
+                <lightning-button  variant="brand" label="Search Opportunities" style="length:140px"
+                onclick={searchData}></lightning-button>
+                 <br/>
+
+            </div>
+            </lightning-card>
+            </lightning-layout-item>
+
+
+
+            
+           <lightning-layout-item size="6" padding="around-small">
+            <lightning-card class="slds-p-around_medium">
+             <div class="slds-grid slds-grid_vertical">
+                <lightning-textarea name="input1" label="Search by Description (Default Operator - Contains)" 
+                class="textAreaBody" value={accDescription} onchange={handleChange4}
+                ></lightning-textarea>
+             </div>
+             </lightning-card>
+             </lightning-layout-item>
+
+
+            </lightning-layout>
+           </div>
+
+
+        <template if:true={showTable}>
+                <lightning-button  variant="brand" label="Download CSV" style="length:140px"
+            onclick={showModalWindow}></lightning-button>
+
+           <lightning-datatable
+           key-field="id"
+           data={odata}
+           columns={columns}
+           column-width-mode="fixed"></lightning-datatable>       
+        </template>
+       
+
+        <template if:true={showModal}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+            <lightning-modal-header label="Export DataTable as CSV"></lightning-modal-header>
+            <lightning-modal-body>
+
+                <lightning-layout>
+                   
+                   
+                    <lightning-layout-item size="6" padding="around-small">
+                        <div class="slds-grid slds-grid_vertical">
+                          <lightning-checkbox-group name="Checkbox Group"
+                              label="*Please Select Columns"
+                              options={CSVoptions}
+                              value={ovalue}
+                              onchange={handleOptionsChange}></lightning-checkbox-group>
+                        </div>
+                     </lightning-layout-item>
+
+
+                     <lightning-layout-item size="3" padding="around-small">
+                        <div class="slds-grid slds-grid_vertical">
+                         <p><strong>User Name:</strong></p>
+                         <p><strong>IP Address:</strong></p>
+                         <p><strong>Search Term:</strong></p>
+                         </div>
+                    </lightning-layout-item>
+
+
+
+                    <lightning-layout-item size="3" padding="around-small">
+                        <div class="slds-grid slds-grid_vertical">
+                         <p>{name}</p>
+                         <p>IPAddress</p>
+                         <p>{searchTerm}</p>
+                        </div>
+                    </lightning-layout-item>
+
+
+
+                </lightning-layout>
+
+            </lightning-modal-body>
+            <lightning-modal-footer>
+                <lightning-button label="OK" onclick={handleOkay}></lightning-button>
+            </lightning-modal-footer>
+        </div>    
+        </section>
+        </template>
+
+
+    </lightning-card>
+</template>
