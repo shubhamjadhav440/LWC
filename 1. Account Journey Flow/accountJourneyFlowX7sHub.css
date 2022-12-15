@@ -1,0 +1,52 @@
+/**
+ * Snap Finance Enterprise Experience Hub 
+ * @version 1.0.0
+ * @author 7Summits, an IBM Company
+ *
+ * COMPILED FILE DO NOT DIRECTLY EDIT
+ */
+.account-journey_container {
+    border-radius: 0.3125rem;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+@media screen and (max-width: 64em) {
+    .account-journey_container {
+        display: none;
+    }
+}
+.account-journey_container .account-journey_header {
+    font-size: 1rem;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+.account-journey_container .account-journey_stage {
+    font-size: 1.25rem;
+    font-weight: bold;
+    line-height: 1.5rem;
+    color: #b3b3b3;
+}
+.account-journey_container .account-journey_stage .account-journey_stage-icon {
+    display: block;
+    margin: 0 auto 1rem;
+}
+.account-journey_container
+    .account-journey_stage
+    .account-journey_stage-description {
+    display: none;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.25rem;
+    color: #606368;
+}
+.account-journey_container .account-journey_stage.stage-completed {
+    color: #174f90;
+}
+.account-journey_container .account-journey_stage.stage-active {
+    color: #78c412;
+}
+.account-journey_container
+    .account-journey_stage.stage-active
+    .account-journey_stage-description {
+    display: block;
+}
