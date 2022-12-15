@@ -1,0 +1,26 @@
+/**
+ * Snap Finance Enterprise Experience Hub 
+ * @version 1.0.0
+ * @author 7Summits, an IBM Company
+ *
+ * COMPILED FILE DO NOT DIRECTLY EDIT
+ */
+.vertical-line {
+    height: 3rem;
+    border-left: 0.0625rem solid #d8d8d8;
+    padding-left: 1.25rem;
+    align-self: center;
+}
+.logo-wrap {
+    display: flex;
+    height: 2.5rem;
+    margin-top: 0.3125rem;
+    margin-bottom: 0.3125rem;
+    padding-left: 1.25rem;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+}
+.logo-wrap img {
+    -o-object-fit: contain;
+    object-fit: contain;
+}
