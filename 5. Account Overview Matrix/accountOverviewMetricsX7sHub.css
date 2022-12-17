@@ -1,0 +1,105 @@
+/**
+ * Snap Finance Enterprise Experience Hub 
+ * @version 1.0.0
+ * @author 7Summits, an IBM Company
+ *
+ * COMPILED FILE DO NOT DIRECTLY EDIT
+ */
+.metric-border {
+    border-left: solid var(--snap-green-accent);
+    border-width: 0.25rem;
+    height: 5.75rem;
+    width: 100%;
+    padding-left: var(--lwc-spacingSmall, 0.75rem);
+}
+.metric-top-border {
+    border-color: #4e72b8;
+    border-left: solid var(--snap-blue-accent);
+    border-width: 0.25rem;
+    height: 5.75rem;
+    width: 100%;
+    padding-left: var(--lwc-spacingSmall, 0.75rem);
+}
+.metric_font {
+    margin: 0 3.375rem 0.25rem 0;
+    white-space: nowrap;
+    font-size: 0.75rem;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #606368;
+}
+.metric_number {
+    width: 100%;
+    height: auto;
+    font-size: 3rem;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #15141d;
+}
+.metric_number_top {
+    width: 100%;
+    height: auto;
+    font-size: 3rem;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #15141d;
+}
+.metric_number_visit {
+    width: 100%;
+    height: auto;
+    padding-top: 0.875rem;
+    font-size: 3rem;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #15141d;
+}
+.metric_number.currency::before,
+.metric_number_top.currency::before,
+.metric_number_visit.currency::before {
+    content: '$';
+    font-size: 1.5rem;
+    vertical-align: text-top;
+}
+.metric_number.percentage::after,
+.metric_number_top.percentage::after,
+.metric_number_visit.percentage::after {
+    content: '%';
+    font-size: 1.5rem;
+    vertical-align: text-top;
+}
+.slds-size_3-of-12 {
+    width: 30%;
+}
+.middle_sapce {
+    padding-top: 1.25rem;
+}
+.metric_number_top span {
+    font-size: 1.875rem;
+    font-weight: 700;
+}
+@media only screen and (max-width: 600px) {
+    .metric_number_top {
+        padding-top: 0.875rem;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .cmp_container {
+        margin: 0.75rem;
+    }
+}

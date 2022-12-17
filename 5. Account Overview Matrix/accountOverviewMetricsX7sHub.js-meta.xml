@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Snap Hub Account Overview Metrics</masterLabel>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="activeAccount" label="ACTIVE ACCOUNTS" type="String" default="ACTIVE ACCOUNTS" />
+            <property name="inOnboarding" label="IN ONBOARDING" type="String" default="IN ONBOARDING" />
+            <property name="amountFinanced" label="AMOUNT FINANCED" type="String" default="AMOUNT FINANCED" />
+            <property name="cadenceCallsCompleted" label="CADENCE CALLS COMPLETED" type="String" default="CADENCE CALLS COMPLETED" />
+            <property name="executiveBusinessReview" label="EXECUTIVE BUSINESS REVIEW" type="String" default="EXECUTIVE BUSINESS REVIEW" />
+            <property name="storeVisits" label="STORE VISITS" type="String" default="STORE VISITS" />
+            <property name="customClass" label="CSS Class" type="String" description="Apply additional SLDS or custom CSS class" />
+        </targetConfig>
+    </targetConfigs>
+
+
+</LightningComponentBundle>

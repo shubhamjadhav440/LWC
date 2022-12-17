@@ -1,0 +1,78 @@
+<template>
+    <div class={customClass}>
+        <div class="slds-grid cmp_container">
+            <ol>
+                <li>
+                    <lightning-layout>
+
+                        <lightning-layout-item class="slds-col slds-grow-none slds-shrink">
+                            <div>
+                                <div class="slds-col metric-top-border">
+                                    <p class='metric_font'>ACTIVE ACCOUNTS</p>
+                                        <p class='metric_number_visit'>{activeAccounts}</p>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+            
+                        <lightning-layout-item class="slds-col slds-grow-none slds-shrink">
+                            <div>
+                                <div class="slds-col metric-top-border">
+                                    <p class='metric_font'>IN ONBOARDING</p>
+                                    <p class='metric_number_visit'>{inBoardingAccounts}</p>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+            
+                        <lightning-layout-item class="slds-col slds-grow-none slds-shrink">
+                            <div>
+                                <div class="slds-col metric-top-border">
+                                    <p class='metric_font'>AMOUNT FINANCED</p>
+                                    <p class='currency metric_number_visit'>{amountFinanced}</p>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+            
+                    </lightning-layout>
+
+                </li>
+                <li class="middle_sapce">
+
+                    <lightning-layout>
+
+                        <lightning-layout-item class="slds-col slds-grow-none slds-shrink">
+                            <div>
+                                <div class="slds-col metric-border">
+                                    <p class='metric_font'>CADENCE CALLS COMPLETED</p>
+                                        <p class='metric_number_visit'>{cadenceCallsCompleted}</p>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+            
+                        <lightning-layout-item class="slds-col slds-grow-none slds-shrink">
+                            <div>
+                                <div class="slds-col metric-border">
+                                    <p class='metric_font'>EXECUTIVE BUSINESS REVIEW</p>
+                                    <p class='metric_number_visit'>{eBRCompleted}</p>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+            
+                        <lightning-layout-item class="slds-col slds-grow-none slds-shrink">
+                            <div>
+                                <div class="slds-col metric-border">
+                                    <p class='metric_font'>STORE VISITS</p>
+                                    <p class='metric_number_visit'>{storeVisits}</p>
+                                </div>
+                            </div>
+                        </lightning-layout-item>
+            
+                    </lightning-layout>
+
+                </li>
+            </ol>
+    
+        </div>
+    </div>
+    
+    
+</template>
