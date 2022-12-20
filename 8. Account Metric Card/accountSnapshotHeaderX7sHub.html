@@ -1,0 +1,35 @@
+<template>
+  <lightning-layout  multiple-rows="true">
+    <lightning-layout-item size="12" medium-device-size="3">
+      <h3 class="metrics-section-header__title">{header} <span>|</span> </h3>
+    </lightning-layout-item>
+
+    <lightning-layout-item size="12" medium-device-size="3">
+      <lightning-combobox
+        if:false={noComboBox}
+        name="month"
+        variant="label-hidden"
+        label="Month"
+        value={selectedMonth}
+        options={monthOptions}
+        onchange={handleChange}>
+      </lightning-combobox>
+      <span if:true={noComboBox} class="month-no-combobox">{monthText}</span>
+    </lightning-layout-item>
+
+    <lightning-layout-item size="12" medium-device-size="6" class="metrics-section-header__view-all">
+      <lightning-button
+        class="slds-m-right_large metrics-section-header__view-all-button"
+        variant="base"
+        label={viewAllLabel}
+        onclick={handlePageNavigate}>
+      </lightning-button>
+      <lightning-icon 
+        size="xx-small"
+        class="navigate-chevron-right"
+        icon-name="utility:chevronright"
+        title="View All">
+      </lightning-icon>
+    </lightning-layout-item>
+  </lightning-layout>
+</template>

@@ -1,0 +1,41 @@
+/**
+ * Snap Finance Enterprise Experience Hub 
+ * @version 1.0.0
+ * @author 7Summits, an IBM Company
+ *
+ * COMPILED FILE DO NOT DIRECTLY EDIT
+ */
+:host {
+    --slds-c-button-text-color: #fff;
+    --slds-c-button-text-color-hover: #fff;
+}
+.metrics-section-header__title {
+    color: #fff;
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+.metrics-section-header__title span {
+    font-weight: 700;
+    padding-left: 1.25rem;
+}
+.metrics-section-header__view-all {
+    text-align: right;
+}
+.metrics-section-header__view-all:hover .navigate-chevron-right {
+    --sds-c-icon-color-foreground-default: #fff;
+}
+.metrics-section-header__view-all-button {
+    --slds-c-button-text-color: #8aaff5;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+lightning-icon {
+    position: relative;
+    right: 0.9375rem;
+}
+.navigate-chevron-right {
+    --sds-c-icon-color-foreground-default: #8aaff5;
+    position: relative;
+    top: -0.125rem;
+    font-weight: 700;
+}
