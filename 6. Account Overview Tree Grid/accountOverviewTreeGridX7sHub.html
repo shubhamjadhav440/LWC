@@ -1,0 +1,37 @@
+<template>
+        <div class={customClass}>
+            <div class='cmp_container'>
+                <div class='slds-grid slds-gutters'>
+                    <div class='slds-col slds-size_7-of-12'>
+                        <h3 if:true={header} class="section-header slds-m-bottom_medium">
+                            <img
+                            if:true={iconLink}
+                            class="slds-m-right_medium"
+                            src={iconLink}
+                            alt={iconAltText}>
+                            {header}
+                        </h3>
+                    </div>
+                    <div class="slds-col slds-size_5-of-12"></div>
+
+                </div>
+                <p if:false={treeGridData} class="slds-text-align_center">{noDataMessage}</p>
+                <template if:true={treeGridData}>
+                    <div class="slds-m-top_medium slds-m-bottom_x-large">
+                        <div class="lgc-bg">
+                            <lightning-tree-grid
+                                columns={columnData}
+                                data={treeGridData}
+                                key-field="name"
+                                min-column-width="100"
+                                hide-checkbox-column
+                                resize-column-disabled
+                            ></lightning-tree-grid>
+                        </div>
+                    </div>
+                </template>
+                
+            </div>
+        </div>
+
+</template>

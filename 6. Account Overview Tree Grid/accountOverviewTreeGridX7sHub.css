@@ -1,0 +1,18 @@
+/**
+ * Snap Finance Enterprise Experience Hub 
+ * @version 1.0.0
+ * @author 7Summits, an IBM Company
+ *
+ * COMPILED FILE DO NOT DIRECTLY EDIT
+ */
+.lgc-bg {
+    margin-bottom: 7.5rem;
+}
+.lgc-bg-inverse {
+    background-color: #16325c;
+}
+.section-header {
+    padding-top: 2.5rem;
+    font-size: 1.875rem;
+    font-weight: 700;
+}

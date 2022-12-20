@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Snap Hub Account Overview Tree Grid</masterLabel>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="gatherBy" label="Gather By" type="String" default="userID" description="Gather Data by Account Id or user Id" datasource="accountID,userID" />
+            <property name="header" label="header" type="String" default="Locations" />
+            <property name="iconLink" label="Icon Link" type="String" default="/sfsites/c/resource/brandingIcons_x7sHub/icons/SVG/locations_green.svg" />
+            <property name="iconAltText" label="Header Icon Alt Text" type="String" default="Location" />
+            <property name="accountName" label="Account Name" type="String" default="Account Name" />
+            <property name="status" label="Status" type="String" default="Status" />
+            <property name="state" label="State" type="String" default="State" />
+            <property name="noOfTrainedEmplorees" label="No. of Trained Employees" type="String" default="No. of Trained Employees" />
+            <property name="amountFinanced" label="Amount Financed" type="String" default="Amount Financed" />
+            <property name="noDataMessage" label="No Data Message" type="String" default="No account data found"/>
+            <property name="customClass" label="CSS Class" type="String" description="Apply additional SLDS or custom CSS class" />
+        </targetConfig>
+    </targetConfigs>
+
+
+</LightningComponentBundle>
