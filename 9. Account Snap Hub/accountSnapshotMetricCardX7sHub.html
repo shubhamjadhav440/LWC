@@ -1,0 +1,22 @@
+<template>
+  <div class="metric-card__wrap slds-m-right_xx-small slds-p-around_small">
+    <h5 class="metric-card__header">{header}</h5>
+    <div class="metric-card__value">
+      <img 
+        if:true={metricsDirectionImage}  
+        class="slds-m-right_small"
+        src={metricsDirectionImage} 
+        width="18" 
+        alt={metricsDirectionImageAltText} /> 
+        <template if:false={isCurrency}><p>{currentMetricValue}</p></template>
+
+        <template if:true={isCurrency}> <p class='currency metric_number'>{currentMetricValue}</p></template>
+
+    </div>
+    <p class="metric-card__subheader">{previousMetricLabel}&nbsp;{previousMetricValue}
+      <template if:true={displayMetricsChange}>
+        <template if:true={isPercentage}>%</template>&nbsp;({diffPercentage})
+      </template>
+    </p>
+  </div>
+</template>

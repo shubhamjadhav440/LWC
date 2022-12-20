@@ -1,0 +1,65 @@
+/**
+ * Snap Finance Enterprise Experience Hub 
+ * @version 1.0.0
+ * @author 7Summits, an IBM Company
+ *
+ * COMPILED FILE DO NOT DIRECTLY EDIT
+ */
+.metric-card__wrap {
+    background-color: #004480;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.3125rem;
+    min-height: 8rem;
+    text-align: left;
+}
+@media only screen and (min-width: 64.0625em) {
+    .metric-card__wrap {
+        text-align: right;
+    }
+}
+.metric-card__value {
+    color: #fff;
+    display: inline-flex;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-left: 0;
+}
+@media only screen and (min-width: 64.0625em) {
+    .metric-card__value {
+        margin-left: auto;
+    }
+}
+.metric-card__header {
+    color: #8aaff5;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 0.75rem !important;
+}
+.metric-card__subheader {
+    color: #8aaff5;
+    font-weight: 500;
+    font-size: 0.6875rem !important;
+}
+.metric-card__header {
+    font-size: 0.75rem;
+}
+.metric-card__subheader {
+    font-size: 0.6875rem;
+}
+.metric_number.currency::before {
+    content: '$';
+    font-size: 1.5rem;
+    vertical-align: text-top;
+}
+.metric_number {
+    margin: 0.3125rem 0 0 0.1875rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: white;
+}
