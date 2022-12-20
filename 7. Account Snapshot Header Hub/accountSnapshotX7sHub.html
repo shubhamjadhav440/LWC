@@ -1,0 +1,116 @@
+<template>
+
+    <div class="slds-is-relative account-snapshot__section-wrap" style="min-height: 150px;">
+        <lightning-spinner if:true={isKeyMetricsLoading} alternative-text="Loading" size="small" variant="brand"></lightning-spinner>
+
+        <c-account-snapshot-header-x7s-hub 
+            header={keyMetricsHeader}
+            number-of-months-options={numberOfMonthsOptions}
+            view-all-page-api-name={financingDataPageApi}
+            view-all-label={financingDataPageLinkLabel}
+            metrics-type="keyMetrics" 
+            onmonthchange={handleMonthChange}>
+        </c-account-snapshot-header-x7s-hub>
+
+        <lightning-layout if:true={keyMetrics} class="key-metrics slds-p-right_medium slds-m-bottom_xx-large" horizontal-align="spread">
+            <lightning-layout-item>
+                <c-account-snapshot-metric-card-x7s-hub 
+                    current-value={keyMetrics.currentMonth.loansFunded} 
+                    previous-value={keyMetrics.previousMonth.loansFunded}
+                    header={loansFunded}
+                    display-metrics-change={displayMetricsChange}
+                    previous-metric-label={lastMonth}>
+                </c-account-snapshot-metric-card-x7s-hub>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <c-account-snapshot-metric-card-x7s-hub 
+                    current-value={keyMetrics.currentMonth.amountFinanced} 
+                    previous-value={keyMetrics.previousMonth.amountFinanced}
+                    is-currency={isCurrency}
+                    header={amountFinanced}
+                    display-metrics-change={displayMetricsChange}
+                    previous-metric-label={lastMonth}>
+                </c-account-snapshot-metric-card-x7s-hub>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <c-account-snapshot-metric-card-x7s-hub 
+                    current-value={keyMetrics.currentMonth.totalApplications} 
+                    previous-value={keyMetrics.previousMonth.totalApplications} 
+                    header={applications}
+                    display-metrics-change={displayMetricsChange}
+                    previous-metric-label={lastMonth}>
+                </c-account-snapshot-metric-card-x7s-hub>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <c-account-snapshot-metric-card-x7s-hub 
+                    current-value={keyMetrics.currentMonth.totalApproved} 
+                    previous-value={keyMetrics.previousMonth.totalApproved} 
+                    header={approved}
+                    display-metrics-change={displayMetricsChange}
+                    previous-metric-label={lastMonth}>
+                </c-account-snapshot-metric-card-x7s-hub>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+
+    <div class="slds-is-relative account-snapshot__section-wrap slds-m-top_large">
+        <lightning-spinner if:true={isSnapEdgeMetricsLoading} alternative-text="Loading" size="small" variant="brand"></lightning-spinner>
+
+        <c-account-snapshot-header-x7s-hub 
+            header="Snap EDGE" 
+            number-of-months-options={numberOfMonthsOptions}
+            metrics-type="snapEdge"
+            view-all-page-api-name={snapEdgeDataPageApi}
+            view-all-label={snapEdgeDataPageLinkLabel}
+            onmonthchange={handleMonthChange}
+            no-combo-box="true">
+        </c-account-snapshot-header-x7s-hub>
+
+        <lightning-layout if:true={snapEdgeMetrics} class="snap-edge-metrics slds-p-right_medium" horizontal-align="spread">
+            <lightning-layout-item>
+                <c-account-snapshot-metric-card-x7s-hub 
+                    current-value={snapEdgeMetrics.currentMonthTotalEdgeRevenue}
+                    previous-value={snapEdgeMetrics.previousMonthTotalEdgeRevenue}
+                    is-currency={isCurrency}
+                    header={totalEdgeRevenue}
+                    display-metrics-change={displayMetricsChange}
+                    previous-metric-label={lastMonth}>
+                </c-account-snapshot-metric-card-x7s-hub>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <c-account-snapshot-metric-card-x7s-hub 
+                    current-value={snapEdgeMetrics.currentYearTotalEdgeRevenue}
+                    previous-value={snapEdgeMetrics.previousYearTotalEdgeRevenue}
+                    is-currency={isCurrency}
+                    header={totalEdgeRevenueYTD}
+                    display-metrics-change={displayMetricsChange}
+                    previous-metric-label={lastYear}>
+                </c-account-snapshot-metric-card-x7s-hub>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <c-account-snapshot-metric-card-x7s-hub 
+                    current-value={snapEdgeTotalPercentageCurrentMonth}
+                    previous-value={snapEdgeTotalPercentagePreviousMonth}
+                    is-percentage={isPercentage}
+                    header={ofTotalRevenue}
+                    display-metrics-change={displayMetricsChange}
+                    previous-metric-label={lastMonth}>
+                </c-account-snapshot-metric-card-x7s-hub>
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <p if:true={lastModifiedDate} class="account-snapshot__timestamp slds-m-top_small">
+            Data last updated&nbsp; 
+            <lightning-formatted-date-time 
+                value={lastModifiedDate}
+                year="numeric" 
+                month="long" 
+                day="numeric" 
+                hour="numeric"
+                minute="2-digit" 
+                time-zone-name="short" 
+                hour12="true">
+            </lightning-formatted-date-time>
+        </p>
+    </div>
+</template>

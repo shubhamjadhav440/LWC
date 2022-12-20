@@ -1,0 +1,18 @@
+/**
+ * Snap Finance Enterprise Experience Hub 
+ * @version 1.0.0
+ * @author 7Summits, an IBM Company
+ *
+ * COMPILED FILE DO NOT DIRECTLY EDIT
+ */
+.account-snapshot__section-wrap {
+    min-height: 9.375rem;
+}
+.account-snapshot__timestamp {
+    color: #4e72b8;
+    font-size: 0.625rem;
+    font-weight: 400;
+}
+lightning-layout-item {
+    width: 100%;
+}

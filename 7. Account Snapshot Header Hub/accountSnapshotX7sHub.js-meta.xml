@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Snap Finance Account Snapshot</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="numberOfMonthsOptions" label="Number of Months" type="Integer" default="5" description="Enter the number of months to display in the month selection dropdown not including the current month. Minimum 3." />
+            <property name="displayMetricsChange" label="Display Metrics Change?" type="Boolean" default="false" />
+            <property name="keyMetricsHeader" label="Key Metrics" type="String" />
+            <property name="snapEdgeMetricsHeader" label="Snap Edge" type="String" />
+            <property name="financingDataPageLinkLabel" label="View All Financing Data" type="String" />
+            <property name="financingDataPageApi" label="Financing Data Page API" type="String" default="loans_and_financing__c" description="The page API name for navigation to the View All Financing Data link." />
+            <property name="snapEdgeDataPageLinkLabel" label="View All Snap EDGE Data" type="String" />
+            <property name="snapEdgeDataPageApi" label="Snap EDGE Page API" type="String" default="snap_edge__c" description="The page API name for navigation to the View All Snap EDGE Data link." />
+            <property name="loansFunded" label="Loans Funded" type="String" default="Loans Funded"/>
+            <property name="amountFinanced" label="Amount Financed" type="String" default="Amount Financed"/>
+            <property name="applications" label="Applications" type="String" default="Applications"/>
+            <property name="approved" label="Approved" type="String" default="Approved"/>
+            <property name="totalEdgeRevenue" label="Total Edge Revenue" type="String" default="Total Edge Revenue"/>
+            <property name="totalEdgeRevenueYTD" label="Total Edge Revenue YTD" type="String" default="Total Edge Revenue YTD"/>
+            <property name="ofTotalRevenue" label="% of Total Revenue" type="String" default="% of Total Revenue"/>
+            <property name="lastMonth" label="Last Month" type="String" default="Last Month: "/>
+            <property name="lastYear" label="Last Year" type="String" default="Last Year: "/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
