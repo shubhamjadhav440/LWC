@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Snap Finance Cadence Calls Table</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="header" label="Header" type="String" default="Call Log" />
+            <property name="headerIconLink" label="Header Icon Link" type="String" default="/sfsites/c/resource/brandingIcons_x7sHub/icons/SVG/call-log_green.svg" />
+            <property name="headerIconAltText" label="Header Icon Alt Text" type="String" default="Two people talking" />
+            <property name="noDataMessage" label="No Data Message" type="String" default="No cadence data found." />
+            <property name="recordsPerPage" label="Records Per Page" type="Integer" default="20" />
+            <property name="paginationSize" label="Pagination Size" type="Integer" default="5" description="Number of pages to show at a time (number of page number buttons)" />
+
+            <property name="previousLabel" label="Previous Button Label" type="String" default="Prev" />
+            <property name="nextLabel" label="Next Button Label" type="String" default="Next" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

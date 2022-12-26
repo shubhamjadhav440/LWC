@@ -1,0 +1,59 @@
+<template>
+  <h3 if:true={header} class="section-header slds-m-bottom_medium">
+    <img 
+      if:true={headerIconLink} 
+      class="slds-m-right_medium"
+      src={headerIconLink} 
+      alt={headerIconAltText}>
+    {header}
+  </h3>
+
+  <p if:false={isData} class="slds-text-align_center">{noDataMessage}</p>
+
+  <c-cadence-calls-datatable-x7s-hub
+    if:true={isData}
+    class="slds-max-medium-table_stacked"
+    key-field="representativeId"
+    is-loading={isLoading}
+    columns={columns}
+    data={data}
+    default-sort-direction={defaultSortDirection}
+    sorted-direction={sortDirection}
+    sorted-by={sortedBy}
+    column-widths-mode="fixed"
+    onsort={onHandleSort}
+    min-column-width="200px"
+    hide-checkbox-column
+    resize-column-disabled>
+  </c-cadence-calls-datatable-x7s-hub>
+
+  <lightning-layout if:true={isData} multiple-rows class="training-list__footer slds-m-bottom_medium">
+    <lightning-layout-item size="12" large-device-size="6"></lightning-layout-item>
+    <lightning-layout-item size="12" large-device-size="6">
+      <!-- Pagination -->
+      <div class="datatable-pagination slds-align_absolute-center slds-m-top_x-large">
+        <ul class="slds-button-group-row">
+          <template if:true={hasPrev}>
+            <li class="slds-button-group-item" >
+              <button class="slds-button slds-button_neutral" onclick={onPrev}>{previousLabel}</button>
+            </li>
+          </template>
+          <template for:each={pagesList} for:item="pageNumber">
+            <!-- <li class="slds-button-group-item" key={pageNumber}>
+              <button data-id={pageNumber} class="slds-button slds-button_neutral" onclick={onPageClick}>{pageNumber}</button>
+            </li> -->
+            <li class="slds-button-group-item" key={pageNumber.index}>
+              <button data-id={pageNumber.index} class={pageNumber.class} onclick={onPageClick}>{pageNumber.index}</button>
+            </li>
+          </template>
+          <template if:true={hasNext}>
+            <li class="slds-button-group-item">
+              <button class="slds-button slds-button_neutral" onclick={onNext}>{nextLabel}</button>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </lightning-layout-item>
+  </lightning-layout>
+
+</template>

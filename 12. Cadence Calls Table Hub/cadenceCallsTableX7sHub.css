@@ -1,0 +1,27 @@
+/**
+ * Snap Finance Enterprise Experience Hub 
+ * @version 1.0.0
+ * @author 7Summits, an IBM Company
+ *
+ * COMPILED FILE DO NOT DIRECTLY EDIT
+ */
+.section-header {
+    font-size: 1.875rem;
+}
+.datatable-pagination {
+    float: left;
+}
+@media only screen and (min-width: 992px) {
+    .datatable-pagination {
+        float: right;
+    }
+}
+.datatable-pagination
+    .slds-button-group-row
+    .slds-button-group-item
+    .slds-button {
+    padding-top: 0.1875rem;
+}
+.slds-button_brand {
+    color: white;
+}
