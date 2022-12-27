@@ -1,0 +1,55 @@
+<template>
+
+    <div class='bg'>
+        <div class='slds-card__header slds-grid header slds-modal__header'>
+            <div class='title slds-text-heading--medium slds-media_center slds-has-flexi-truncate'>Deep Clone Enterprise Call</div>
+        </div>
+
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_1-of-4">
+                <span></span>
+            </div>
+            <div class="slds-col slds-size_2-of-4">
+                <p class="checkbox_fieldset_label">Statuses to clone (select at least 1)</p>
+                <span class="status_list_error"></span>
+                <fieldset class="slds-form-element status_field">
+                    <div class='checkbox_item'>
+                        <lightning-input 
+                            class="checkbox_receiver"
+                            type="checkbox"
+                            onchange={handleStatusCheck}
+                            label="Open">
+                        </lightning-input>
+                    </div>
+                    <div class= 'checkbox_item'>
+                        <lightning-input 
+                            class="checkbox_receiver"
+                            type="checkbox"
+                            onchange={handleStatusCheck}
+                            label="In Progress">
+                        </lightning-input>
+                    </div>
+                    <div class= 'checkbox_item'>
+                        <lightning-input 
+                            class="checkbox_receiver"
+                            type="checkbox"
+                            onchange={handleStatusCheck}
+                            label="Closed">
+                        </lightning-input>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="slds-col slds-size_1-of-4">
+                <span></span>
+            </div>
+
+        </div>
+
+        <footer class='slds-modal__footer'>
+            <lightning-button variant="brand" label="Deep Clone" class="submit_btn" type="submit" onclick={submitReceiver}></lightning-button>
+        </footer>
+
+        <lightning-spinner class="post_submit_spinner" variant="brand" alternative-text="Loading..." size="medium"></lightning-spinner>
+
+    </div>
+</template>

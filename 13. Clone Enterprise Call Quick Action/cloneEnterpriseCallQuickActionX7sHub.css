@@ -1,0 +1,57 @@
+/**
+ * Snap Finance Enterprise Experience Hub 
+ * @version 1.0.0
+ * @author 7Summits, an IBM Company
+ *
+ * COMPILED FILE DO NOT DIRECTLY EDIT
+ */
+ .bg {
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    height: auto;
+}
+.cmp_title {
+    padding-top: 20px;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+    color: gray;
+    line-height: 1.6;
+}
+
+.checkbox_fieldset_label {
+    margin-bottom: 16px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.status_list_error {
+    display: none;
+    margin-bottom: 16px;
+    color: red;
+    text-align: center;
+}
+
+.checkbox_receiver .slds-checkbox__label {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.status_field {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.post_submit_spinner {
+    display: none;
+}
+
+.slds-modal__footer {
+    margin-bottom: -40px;
+    margin-top: 30px;
+}
+
+.slds-modal__header {
+    margin-top: -30px;
+}
