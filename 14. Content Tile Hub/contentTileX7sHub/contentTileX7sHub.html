@@ -1,0 +1,35 @@
+<!--
+  ~ Copyright (c) 2021.  7Summits, an IBM company. All rights reserved.
+  -->
+
+<!-- x7S Card -->
+<template>
+    <a href={link}
+        class={componentClass}
+       target={linkTarget}
+       style={tileStyle}>
+        <template if:true={showImage}>
+            <img src={imageSrc} alt={title} class="slds-m-bottom_medium" />
+        </template>
+        <template if:true={showIcon}>
+            <div class="x7s-tile__icon">
+                <lightning-icon icon-name={iconName} size="large"> </lightning-icon>
+            </div>
+        </template>
+        <template if:true={showOverlay}>
+            <span class="x7s-tile__overlay" style={overlayStyle}> </span>
+        </template>
+        <div class="x7s-tile__info slds-col">
+            <span class="x7s-tile__title slds-p-bottom_x-small"
+                  style={titleStyle}>
+                <lightning-formatted-rich-text value={title}> </lightning-formatted-rich-text>
+            </span>
+            <template if:true={showDescription}>
+                <span class="x7s-tile__description"
+                      style={descriptionStyle}>
+                    <lightning-formatted-rich-text value={description}> </lightning-formatted-rich-text>
+                </span>
+            </template>
+        </div>
+    </a>
+</template>
